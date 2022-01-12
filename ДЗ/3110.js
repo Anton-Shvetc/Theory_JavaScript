@@ -29,5 +29,5 @@ function deepCopy(obj) {
 
 let test = deepCopy(pnt);
 pnt.x = 10;
-// console.log(pnt);fgjaeh kmqkph q4j3rg[jrg q[mkrg[eqlog(test);
+
 console.log(test.getPoint());
