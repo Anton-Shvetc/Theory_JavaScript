@@ -23,3 +23,5 @@ function pastHtml() {
 let numberID = setInterval(() => pastHtml(), 1000);
 
 btn.addEventListener("click", () => clearInterval(numberID));
+
+// Практическое задание 48
