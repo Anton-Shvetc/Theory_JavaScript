@@ -84,6 +84,7 @@ console.log(temperatureConverter.temperature);
 // Практическое задание 31
 
 function TemperatureConverter(celsiusTemperature, measure) {
+  // debugger;
   this.celsiusTemperature = celsiusTemperature;
   this.temperature = celsiusTemperature;
   this.measure = measure;
@@ -113,10 +114,16 @@ function TemperatureConverter(celsiusTemperature, measure) {
   };
 }
 
-let temperatureConverter = new TemperatureConverter(90, "Kelvin");
-console.log(temperatureConverter);
+while (true) {}
 
-temperatureConverter.increaseTemperature(10);
+setTimeout(() => {
+  console.log(12);
+}, 10000);
 
-temperatureConverter.isBoiled();
-console.log(temperatureConverter.temperature);
+// let temperatureConverter = new TemperatureConverter(90, "Kelvin");
+// console.log(temperatureConverter);
+
+// temperatureConverter.increaseTemperature(10);
+
+// temperatureConverter.isBoiled();
+// console.log(temperatureConverter.temperature);
