@@ -1,3 +1,36 @@
+// Руководство 42
+
+new Promise((resolve, reject) => {
+  let water = 32;
+
+  setTimeout(() => {
+    console.log("Turn on coffee machine...");
+    resolve(water);
+  }, 2000);
+})
+  .then((result) => {
+    return new Promise((resolve, reject) => {
+      if (result > 100) {
+        setTimeout(() => {
+          resolve("Take your coffee");
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          reject("Water less than 100 ml ");
+        }, 5000);
+      }
+    });
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    console.log("Switch off coffee machine...");
+  });
+
 // Практическое задание 49
 
 new Promise((resolve, reject) => {
@@ -33,31 +66,9 @@ new Promise((resolve, reject) => {
   .catch((err) => {
     console.log(err);
   });
-//   .then((result) => {
-//     setTimeout(() => {
-//       console.log(++result);
-//     }, 500);
-//   });
-
-let cnt = new Promise((resolve) => setTimeout(() => resolve(1), 500));
-
-cnt
-  .then(function (result) {
-    console.log(result++);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(result), 500);
-    });
-  })
-  .then(function (result) {
-    console.log(result++);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(result), 500);
-    });
-  })
-  .then((result) => console.log(result));
 
 //  Руководство 43
-
+// let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const URL = `http://api.dataatwork.org/v1/jobs/`;
 function sendRequest(id) {
   let xhr = new XMLHttpRequest();
@@ -74,6 +85,28 @@ xhr1.onload = function () {
     let xhr3 = sendRequest(relatedId);
     xhr3.onload = function () {
       console.log(JSON.parse(xhr3.response).title);
+    };
+  };
+};
+
+// Практическое задание 50
+
+function sendRequest(url) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.send();
+  return xhr;
+}
+const DEFAULT_REQUEST = "https://rickandmortyapi.com/api/character/1";
+let xhr1 = sendRequest(DEFAULT_REQUEST);
+xhr1.onload = function () {
+  let location = JSON.parse(xhr1.response).location;
+  let xhr2 = sendRequest(location.url);
+  xhr2.onload = function () {
+    let firstResident = JSON.parse(xhr2.response).residents[0];
+    let xhr3 = sendRequest(firstResident);
+    xhr3.onload = function () {
+      console.log(JSON.parse(xhr3.response).name);
     };
   };
 };

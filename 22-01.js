@@ -15,7 +15,6 @@ let number = new Promise((resolve, reject) => {
     console.log(++result);
   })
   .catch((error) => {
-    
     console.log(error.message);
   })
   .finally(() => {
